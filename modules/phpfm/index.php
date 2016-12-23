@@ -61,9 +61,11 @@ if (@get_magic_quotes_gpc()) {
 }
 // Register Globals (its an old script..)
 $blockKeys = array('_SERVER','_SESSION','_GET','_POST','_COOKIE');
+/*
 foreach ($_GET as $key => $val) if (array_search($key,$blockKeys) === false) $$key=$val;
 foreach ($_POST as $key => $val) if (array_search($key,$blockKeys) === false) $$key=$val;
 foreach ($_COOKIE as $key => $val) if (array_search($key,$blockKeys) === false) $$key=$val;
+*/
 // Server Vars
 function curl_server_online_check(){
     @$ch = curl_init();
