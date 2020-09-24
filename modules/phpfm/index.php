@@ -2153,7 +2153,7 @@ function chmod_form(){
     </table>
     </form>
     </body>\n</html>";
-}
+}/*
 function get_mime_type($ext = ''){
     $mimes = array(
       'hqx'   =>  'application/mac-binhex40',
@@ -2249,7 +2249,7 @@ function get_mime_type($ext = ''){
       'eml'   =>  'message/rfc822'
     );
     return (!isset($mimes[lowercase($ext)])) ? 'application/octet-stream' : $mimes[lowercase($ext)];
-}
+}*/
 function view_form(){
     global $doc_root,$fm_path_info,$url_info,$current_dir,$is_windows,$filename,$passthru;
     if (intval($passthru)){
