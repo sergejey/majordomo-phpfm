@@ -1,5 +1,10 @@
 <?php
 //{"lang":"","fm_root":"","timezone":"","date_format":"Y\/m\/d H:i","auth_pass":"d41d8cd98f00b204e9800998ecf8427e","error_reporting":1}
+chdir(dirname(__FILE__) . '/../../');
+include_once("./config.php");
+include_once("./lib/loader.php");
+$db = new mysql(DB_HOST, '', DB_USER, DB_PASSWORD, DB_NAME);
+include_once("./load_settings.php");
 /*-------------------------------------------------
 | PHP FILE MANAGER
 +--------------------------------------------------
@@ -112,9 +117,11 @@ define('UTF16_LITTLE_ENDIAN_BOM', chr(0xFF).chr(0xFE));
 define('UTF8_BOM'               , chr(0xEF).chr(0xBB).chr(0xBF));
 
 @ob_start(); // For ChromePhp Debug and JSONRPC to Work!
-function getmicrotime(){
-   list($usec, $sec) = explode(" ", microtime());
-   return ((float)$usec + (float)$sec);
+if (!function_exists('getmicrotime')) {
+    function getmicrotime(){
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
+    }
 }
 $script_init_time = getmicrotime();
 function log_script_time(){
@@ -3393,6 +3400,7 @@ function chmod_form(){
     </body>
     </html>";
 }
+if (!function_exists('get_mime_type')) {
 function get_mime_type($ext = ''){
     $mimes = array(
       'hqx'   =>  'application/mac-binhex40',
@@ -3488,6 +3496,7 @@ function get_mime_type($ext = ''){
       'eml'   =>  'message/rfc822'
     );
     return (!isset($mimes[lowercase($ext)])) ? 'application/octet-stream' : $mimes[lowercase($ext)];
+}
 }
 function get_file_icon_class($path){
     $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
