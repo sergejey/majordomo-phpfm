@@ -3434,10 +3434,6 @@ function get_mime_type($ext = ''){
       'dxr'   =>  'application/x-director',
       'dvi'   =>  'application/x-dvi',
       'gtar'  =>  'application/x-gtar',
-      'php'   =>  'application/x-httpd-php',
-      'php4'  =>  'application/x-httpd-php',
-      'php3'  =>  'application/x-httpd-php',
-      'phtml' =>  'application/x-httpd-php',
       'phps'  =>  'application/x-httpd-php-source',
       'js'    =>  'application/x-javascript',
       'swf'   =>  'application/x-shockwave-flash',
@@ -3668,6 +3664,7 @@ function get_file_icon_class($path){
 }
 function view_form(){
     global $doc_root,$fm_path_info,$url_info,$fm_current_dir,$is_windows,$filename,$passthru;
+    $passthru = 1;
     if (intval($passthru)){
         $file = $fm_current_dir.$filename;
         if(file_exists($file)){
@@ -3684,6 +3681,7 @@ function view_form(){
                     $ext = pathinfo($file, PATHINFO_EXTENSION);
                     $ctype = get_mime_type($ext);
                     if (strpos($ctype,"application/") !== false) $ctype = "text/plain";
+                    if ($ext == 'php') $ctype = "text/plain";
                     header("Pragma: public");
                     header("Expires: 0");
                     header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
