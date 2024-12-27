@@ -3400,8 +3400,8 @@ function chmod_form(){
     </body>
     </html>";
 }
-if (!function_exists('get_mime_type')) {
-function get_mime_type($ext = ''){
+
+function get_mime_type_int($ext = ''){
     $mimes = array(
       'hqx'   =>  'application/mac-binhex40',
       'cpt'   =>  'application/mac-compactpro',
@@ -3493,7 +3493,7 @@ function get_mime_type($ext = ''){
     );
     return (!isset($mimes[lowercase($ext)])) ? 'application/octet-stream' : $mimes[lowercase($ext)];
 }
-}
+
 function get_file_icon_class($path){
     $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
     switch ($ext) {
@@ -3679,7 +3679,7 @@ function view_form(){
                 if ($fh = fopen("$file", "rb")){
                     fclose($fh);
                     $ext = pathinfo($file, PATHINFO_EXTENSION);
-                    $ctype = get_mime_type($ext);
+                    $ctype = get_mime_type_int($ext);
                     if (strpos($ctype,"application/") !== false) $ctype = "text/plain";
                     if ($ext == 'php') $ctype = "text/plain";
                     header("Pragma: public");
