@@ -3900,7 +3900,7 @@ function edit_file_form(){
         if (strlen($save_msg)) echo "
         <div class=\"save_msg\">".$save_msg."</div>";
     echo "
-    </div>
+    </div><div style='clear:both'></div>
     <div id=\"div_ace_editor\">".html_encode($file_data)."</div>
     <script language=\"Javascript\" type=\"text/javascript\">
     <!--
